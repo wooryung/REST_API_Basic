@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wrsungrestapi.mapper.CommentMapper">
+    <!-- Comment 테이블 가져오기 -->
+    <select id="getCommentList" resultType="wrsungrestapi.vo.CommentVo">
+        SELECT *
+        FROM Comment
+    </select>
+
+    <!-- postId로 Comment 데이터 가져오기 -->
+    <select id="getCommentListByPostId" resultType="wrsungrestapi.vo.CommentVo">
+        SELECT *
+        FROM Comment
+        WHERE postId = #{postId}
+    </select>
+
+    <!-- id로 Comment 데이터 가져오기 -->
+    <select id="getCommentById" resultType="wrsungrestapi.vo.CommentVo">
+        SELECT *
+        FROM Comment
+        WHERE id = #{id}
+    </select>
+
+    <!-- Comment 데이터 추가하기 -->
+    <insert id="insertComment" parameterType="wrsungrestapi.vo.CommentVo">
+        INSERT INTO Comment
+            (postId, name, email, body)
+        VALUES
+            (#{postId}, #{name}, #{email}, #{body})
+    </insert>
+
+    <!-- id로 Comment 데이터 수정하기 -->
+    <update id="updateComment" parameterType="wrsungrestapi.vo.CommentVo">
+        UPDATE Comment
+        SET name = #{name},
+            email = #{email},
+            body = #{body}
+        WHERE id = #{id}
+    </update>
+
+    <!-- id로 Comment 데이터 삭제하기 -->
+    <delete id="deleteComment">
+        DELETE
+        FROM Comment
+        WHERE id = #{id}
+    </delete>
+</mapper>

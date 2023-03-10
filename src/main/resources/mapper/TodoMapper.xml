@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wrsungrestapi.mapper.TodoMapper">
+    <!-- Todo 테이블 가져오기 -->
+    <select id="getTodoList" resultType="wrsungrestapi.vo.TodoVo">
+        SELECT *
+        FROM Todo
+    </select>
+
+    <!-- userId로 Todo 데이터 가져오기 -->
+    <select id="getTodoListByUserId" resultType="wrsungrestapi.vo.TodoVo">
+        SELECT *
+        FROM Todo
+        WHERE userId = #{userId}
+    </select>
+
+    <!-- id로 Todo 데이터 가져오기 -->
+    <select id="getTodoById" resultType="wrsungrestapi.vo.TodoVo">
+        SELECT *
+        FROM Todo
+        WHERE id = #{id}
+    </select>
+
+    <!-- Todo 데이터 추가하기 -->
+    <insert id="insertTodo" parameterType="wrsungrestapi.vo.TodoVo">
+        INSERT INTO Todo
+            (userId, title, completed)
+        VALUES
+            (#{userId}, #{title}, #{completed})
+    </insert>
+
+    <!-- id로 Todo 데이터 수정하기 -->
+    <update id="updateTodo" parameterType="wrsungrestapi.vo.TodoVo">
+        UPDATE Todo
+        SET title = #{title},
+            completed = #{completed}
+        WHERE id = #{id}
+    </update>
+
+    <!-- id로 Todo 데이터 삭제하기 -->
+    <delete id="deleteTodo">
+        DELETE
+        FROM Todo
+        WHERE id = #{id}
+    </delete>
+</mapper>

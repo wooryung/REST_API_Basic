@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wrsungrestapi.mapper.AlbumMapper">
+    <!-- Album 테이블 가져오기 -->
+    <select id="getAlbumList" resultType="wrsungrestapi.vo.AlbumVo">
+        SELECT *
+        FROM Album
+    </select>
+
+    <!-- userId로 Album 데이터 가져오기 -->
+    <select id="getAlbumListByUserId" resultType="wrsungrestapi.vo.AlbumVo">
+        SELECT *
+        FROM Album
+        WHERE userId = #{userId}
+    </select>
+
+    <!-- id로 Album 데이터 가져오기 -->
+    <select id="getAlbumById" resultType="wrsungrestapi.vo.AlbumVo">
+        SELECT *
+        FROM Album
+        WHERE id = #{id}
+    </select>
+
+    <!-- Album 데이터 추가하기 -->
+    <insert id="insertAlbum">
+        INSERT INTO Album
+            (userId, title)
+        VALUES
+            (#{userId}, #{title})
+    </insert>
+
+    <!-- id로 Album 데이터 수정하기 -->
+    <update id="updateAlbum">
+        UPDATE Album
+        SET title = #{title}
+        WHERE id = #{id}
+    </update>
+
+    <!-- id로 Album 데이터 삭제하기 -->
+    <delete id="deleteAlbum">
+        DELETE
+        FROM Album
+        WHERE id = #{id}
+    </delete>
+</mapper>

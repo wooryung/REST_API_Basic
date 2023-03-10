@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wrsungrestapi.mapper.PostMapper">
+    <!-- Post 테이블 가져오기 -->
+    <select id="getPostList" resultType="wrsungrestapi.vo.PostVo">
+        SELECT *
+        FROM Post
+    </select>
+
+    <!-- userId로 Post 데이터 가져오기 -->
+    <select id="getPostListByUserId" resultType="wrsungrestapi.vo.PostVo">
+        SELECT *
+        FROM Post
+        WHERE userId = #{userId}
+    </select>
+
+    <!-- id로 Post 데이터 가져오기 -->
+    <select id="getPostById" resultType="wrsungrestapi.vo.PostVo">
+        SELECT *
+        FROM Post
+        WHERE id = #{id}
+    </select>
+
+    <!-- Post 데이터 추가하기 -->
+    <insert id="insertPost" parameterType="wrsungrestapi.vo.PostVo">
+        INSERT INTO Post
+            (userId, title, body)
+        VALUES
+            (#{userId}, #{title}, #{body})
+    </insert>
+    
+    <!-- id로 Post 데이터 수정하기 -->
+    <update id="updatePost" parameterType="wrsungrestapi.vo.PostVo">
+        UPDATE Post
+        SET title = #{title},
+            body = #{body}
+        WHERE id = #{id}
+    </update>
+
+    <!-- id로 Post 데이터 삭제하기 -->
+    <delete id="deletePost">
+        DELETE
+        FROM Post
+        WHERE id = #{id}
+    </delete>
+</mapper>
